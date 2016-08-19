@@ -191,6 +191,7 @@ def create_account(username, password, email, birthday, captchakey2):
         _validate_response(driver)
     except:
         print("Failed to create user: {}".format(username))
+        driver.close()
         raise
 
     print("Account successfully created.")
