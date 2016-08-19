@@ -150,7 +150,7 @@ def create_account(username, password, email, birthday, captchakey2):
     driver.find_element_by_id("id_public_profile_opt_in_1").click()
     driver.find_element_by_name("terms").click()
 
-    if captchakey2 == None then:
+    if captchakey2 == None:
         #Do manual captcha entry
         print("You did not pass a 2captcha key. Please solve the captcha manually.")
         elem = driver.find_element_by_class_name("g-recaptcha")
@@ -175,10 +175,10 @@ def create_account(username, password, email, birthday, captchakey2):
             time.sleep(5)
             recaptcharesponse = urllib2.urlopen("http://2captcha.com/res.php?key=" + captchakey2 + "&action=get&id=" + captchaid).read()
         solvedcaptcha = recaptcharesponse[3:]
-        print "solved captcha : " + solvedcaptcha + "\n"
         elem = driver.find_element_by_name("g-recaptcha-response")
         elem = driver.execute_script("arguments[0].style.display = 'block'; return arguments[0];", elem)
         elem.send_keys(solvedcaptcha)
+        print "Solved captcha"
 	
     try:
         user.submit()
