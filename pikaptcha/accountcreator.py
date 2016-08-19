@@ -150,25 +150,35 @@ def create_account(username, password, email, birthday, captchakey2):
     driver.find_element_by_id("id_public_profile_opt_in_1").click()
     driver.find_element_by_name("terms").click()
 
-    # Now to automatically handle captcha
-    print("Starting autosolve recaptcha")
-    html_source = driver.page_source
-    gkey_index = html_source.find("https://www.google.com/recaptcha/api2/anchor?k=") + 47
-    gkey = html_source[gkey_index:gkey_index+40]
-    recaptcharesponse = urllib2.urlopen("http://2captcha.com/in.php?key=" + captchakey2 + "&method=userrecaptcha&googlekey=" + gkey).read()
-    captchaid = recaptcharesponse[3:]
-    recaptcharesponse = "CAPCHA_NOT_READY"
-    elem = driver.find_element_by_class_name("g-recaptcha")
-    driver.execute_script("arguments[0].scrollIntoView(true);", elem)
-    while recaptcharesponse == "CAPCHA_NOT_READY":
-	print "Wait 5 seconds. Captcha not solved yet."
-	time.sleep(5)
-	recaptcharesponse = urllib2.urlopen("http://2captcha.com/res.php?key=" + captchakey2 + "&action=get&id=" + captchaid).read()
-    solvedcaptcha = recaptcharesponse[3:]
-    print "solved captcha : " + solvedcaptcha + "\n"
-    elem = driver.find_element_by_name("g-recaptcha-response")
-    elem = driver.execute_script("arguments[0].style.display = 'block'; return arguments[0];", elem)
-    elem.send_keys(solvedcaptcha)
+    if captchakey2 == None then:
+        #Do manual captcha entry
+        print("You did not pass a 2captcha key. Please solve the captcha manually.")
+        elem = driver.find_element_by_class_name("g-recaptcha")
+        driver.execute_script("arguments[0].scrollIntoView(true);", elem)
+        # Waits 1 minute for you to input captcha
+        WebDriverWait(driver, 60).until(EC.text_to_be_present_in_element_value((By.ID, "g-recaptcha-response"), ""))
+        print("Captcha successful. Sleeping for 1 second...")
+        time.sleep(1)
+    else:
+        # Now to automatically handle captcha
+        print("Starting autosolve recaptcha")
+        html_source = driver.page_source
+        gkey_index = html_source.find("https://www.google.com/recaptcha/api2/anchor?k=") + 47
+        gkey = html_source[gkey_index:gkey_index+40]
+        recaptcharesponse = urllib2.urlopen("http://2captcha.com/in.php?key=" + captchakey2 + "&method=userrecaptcha&googlekey=" + gkey).read()
+        captchaid = recaptcharesponse[3:]
+        recaptcharesponse = "CAPCHA_NOT_READY"
+        elem = driver.find_element_by_class_name("g-recaptcha")
+        driver.execute_script("arguments[0].scrollIntoView(true);", elem)
+        while recaptcharesponse == "CAPCHA_NOT_READY":
+            print "Wait 5 seconds. Captcha not solved yet."
+            time.sleep(5)
+            recaptcharesponse = urllib2.urlopen("http://2captcha.com/res.php?key=" + captchakey2 + "&action=get&id=" + captchaid).read()
+        solvedcaptcha = recaptcharesponse[3:]
+        print "solved captcha : " + solvedcaptcha + "\n"
+        elem = driver.find_element_by_name("g-recaptcha-response")
+        elem = driver.execute_script("arguments[0].style.display = 'block'; return arguments[0];", elem)
+        elem.send_keys(solvedcaptcha)
 	
     try:
         user.submit()
