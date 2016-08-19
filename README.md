@@ -11,9 +11,9 @@ Pikaptcha creates the PTC account and completes the TOS in game. It does NOT ver
 Install the following clickable links: (if you cannot click them, all links are at the bottom.)
 1. [Google Chrome](https://www.google.com/chrome/) installed to default directory in C:\
 
-2. [Python 2.7.12](https://www.python.org/downloads/release/python-2712/). Do this during setup.
+2. [Python 2.7.12](https://www.python.org/downloads/release/python-2712/). Do this during setup. http://imgur.com/k421LiP
 
-3. [Git](https://git-scm.com/download/win). Do this during setup.
+3. [Git](https://git-scm.com/download/win). Do this during setup. http://imgur.com/rhQi73O
 
 4. [Microsoft Visual C++ Compiler for Python 2.7](https://www.microsoft.com/en-ca/download/details.aspx?id=44266)
 
