@@ -112,20 +112,16 @@ Example 4 (Create a new account with mail using "plus trick")::
 	  
 Common Issues
 -------------
-Cannot find chrome binary. 
-	Chrome should be installed to the default directory in C. Ensure that it is. If it is, try uninstalling and reinstalling.
+Cannot find chrome binary. Chrome should be installed to the default directory in C. Ensure that it is. If it is, try uninstalling and reinstalling.
 
 Cannot find PgoApi module.
-	pip install git+https://github.com/keyphact/pgoapi.git
+	~pip install git+https://github.com/keyphact/pgoapi.git
 
-Chromedriver.exe not found
-	Your chromedriver.exe file is either not in C:\python27\scripts OR you did put the file there but you do not have an environment path setup for C:\python27\scripts
+Chromedriver not found. Your chromedriver.exe file is either not in C:\python27\scripts OR you did put the file there but you do not have an environment path setup for C:\python27\scripts
 
-pip is not recognized as an internal or external command
-	you do not have an environment path setup for C:\python27\scripts OR python 2.7.12 is not installed
+pip is not recognized as an internal or external command. You do not have an environment path setup for C:\python27\scripts OR python 2.7.12 is not installed
 
-cannot find git
-	you did not install git.
+'git is not recognized as an internal or external command. You did not install GIT
 
 selenium not found
-	pip install selenium
+	~pip install selenium
