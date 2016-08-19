@@ -8,37 +8,37 @@ Pikaptcha creates the PTC account and completes the TOS in game. It does NOT ver
 
 ## Installation
 Windows
-	Install the following clickable links: (if you cannot click them, all links are at the bottom.)
-	1. [Google Chrome](https://www.google.com/chrome/)
-		Installed to default directory in C:\
-	2. [Python 2.7.12](https://www.python.org/downloads/release/python-2712/)
-		At 
-	3. [Git](https://git-scm.com/download/win)
-		At
-	4. [Microsoft Visual C++ Compiler for Python 2.7](https://www.microsoft.com/en-ca/download/details.aspx?id=44266)
-	5. Shift+Right Click your desktop and "Open command window here".
-	6. Type 'path' and hit enter
-		You should see C:\Python27, C:\Python27\Scripts, and C:\Program Files\Git\cmd
-	7. [Download Chromedriver](http://chromedriver.storage.googleapis.com/2.23/chromedriver_win32.zip). Unzip the file and place it in C:\Python27\Scripts
-	8. Shift+Right Click your desktop and "Open command window here".
-	9. Type 'pip install git+https://github.com/sriyegna/pikaptcha' and hit enter
-	10. Type 'pip install git+https://github.com/keyphact/pgoapi.git' and hit enter
-	11. Refer to "How To Use" instructions below
+Install the following clickable links: (if you cannot click them, all links are at the bottom.)
+1. [Google Chrome](https://www.google.com/chrome/)
+	Installed to default directory in C:\
+2. [Python 2.7.12](https://www.python.org/downloads/release/python-2712/)
+	At 
+3. [Git](https://git-scm.com/download/win)
+	At
+4. [Microsoft Visual C++ Compiler for Python 2.7](https://www.microsoft.com/en-ca/download/details.aspx?id=44266)
+5. Shift+Right Click your desktop and "Open command window here".
+6. Type 'path' and hit enter
+	You should see C:\Python27, C:\Python27\Scripts, and C:\Program Files\Git\cmd
+7. [Download Chromedriver](http://chromedriver.storage.googleapis.com/2.23/chromedriver_win32.zip). Unzip the file and place it in C:\Python27\Scripts
+8. Shift+Right Click your desktop and "Open command window here".
+9. Type 'pip install git+https://github.com/sriyegna/pikaptcha' and hit enter
+10. Type 'pip install git+https://github.com/keyphact/pgoapi.git' and hit enter
+11. Refer to "How To Use" instructions below
 	
 If you are still having troubles, you can join us at [discord channel](https://discord.gg/VvwyS) https://discord.gg/VvwyS
 Please let us know what your issue is, instead of just saying it doesnt work. Copying the error code you receive is very helpful.
 
 OSX
-	1. Open terminal and install chromedriver by typing "brew install chromedriver"
-	2. In terminal type "pip install git+https://github.com/sriyegna/pikaptcha" without quotations and hit enter
-	3. In terminal type "pip install git+https://github.com/keyphact/pgoapi.git" without quotations and hit enter
-	4. Refer to "How To Use" instructions below
+1. Open terminal and install chromedriver by typing "brew install chromedriver"
+2. In terminal type "pip install git+https://github.com/sriyegna/pikaptcha" without quotations and hit enter
+3. In terminal type "pip install git+https://github.com/keyphact/pgoapi.git" without quotations and hit enter
+4. Refer to "How To Use" instructions below
 
 Debian based linux
-	1. Open terminal and install chromedriver by typing "sudo apt-get install chromium-browser"
-	2. In terminal type "pip install git+https://github.com/sriyegna/pikaptcha" without quotations and hit enter
-	3. In terminal type "pip install git+https://github.com/keyphact/pgoapi.git" without quotations and hit enter
-	4. Refer to "How To Use" instructions below
+1. Open terminal and install chromedriver by typing "sudo apt-get install chromium-browser"
+2. In terminal type "pip install git+https://github.com/sriyegna/pikaptcha" without quotations and hit enter
+3. In terminal type "pip install git+https://github.com/keyphact/pgoapi.git" without quotations and hit enter
+4. Refer to "How To Use" instructions below
 
     sudo apt-get install chromium-browser
 
@@ -50,12 +50,12 @@ If you want to uninstall pikaptcha, all you need to do to uninstall is open CMD 
 	
 ## Using 2captcha
 If you want to use the 2captcha service (if you cannot click the links, they are also at the bottom of the readme)
-	1. [You need to sign up here](https://2captcha.com/auth/register)
-	2. [Verify your email (if needed) and login](https://2captcha.com/auth/login)
-	3. Either work (Start Work on top) or deposit money (Deposit on left). Get a balance or you will have no credit to solve captchas
-	4. Click the "2Captcha API" tab at the top
-	5. Look for captcha KEY. There should be a long string after that like a6ebcb3f4a7b6f6e319d8e1c37e25ec4
-	6. For the rest of the guide %YOUR_2CAPTCHA_KEY%=the string you found there
+1. [You need to sign up here](https://2captcha.com/auth/register)
+2. [Verify your email (if needed) and login](https://2captcha.com/auth/login)
+3. Either work (Start Work on top) or deposit money (Deposit on left). Get a balance or you will have no credit to solve captchas
+4. Click the "2Captcha API" tab at the top
+5. Look for captcha KEY. There should be a long string after that like a6ebcb3f4a7b6f6e319d8e1c37e25ec4
+6. For the rest of the guide %YOUR_2CAPTCHA_KEY%=the string you found there
 
 
 ## How to use
