@@ -109,7 +109,7 @@ def create_account(username, password, email, birthday, captchakey2):
     driver = webdriver.Chrome()
     driver.set_window_size(600, 600)
     if captchakey2 != None:
-        driver.manage().window().setPosition(new Point(-2000, 0));
+        driver.manage().window().setPosition(new Point(-2000, 0))
 
     # Input age: 1992-01-08
     print("Step 1: Verifying age using birthday: {}".format(birthday))
