@@ -84,8 +84,11 @@ You can type `pikaptcha --help` to see all parameters. Optional parameters are a
 	--username, -u #This is the username
 	--password, -p #This is the password
 	--email, -e #This is the email
+	--plusmail, -m #Suppose your gmail address is test@gmail.com. If you use -m test+@gmail.com, this will activate the plusmail trick
 	--count, -c #This is the number of accounts to make
 	--recaptcha, -r #This is your 2captcha key
+	--autoverify, -av #Set this to True if you want to autoverify emails. Otherwise False (or don't use the tag)
+	--googlepass, -gp #This is the password to your google account if you are using -m argument and -av True
 ```
 
 Example 1 : Create an entirely random account by manually entering the captcha yourself
@@ -133,10 +136,35 @@ Example 7 : Create 10 accounts using a single email address (read below on plusm
 ```
 pikaptcha -p PaSsWoRd -c 10 -m emailaddress+@gmail.com -r %YOUR_2CAPTCHA_KEY%
 ```
+
+Example 8 : Create 5 accounts using the plusmail trick with email verification and manual captcha solving
+
+```
+pikaptcha -c 5 -m emailaddress+@gmail.com -av True -gp GoOgLePaSs
+```
+
+Example 8 : Create 5 accounts using the plusmail trick with email verification and automated captcha solving
+
+```
+pikaptcha -c 5 -m emailaddress+@gmail.com -r %YOUR_2CAPTCHA_KEY% -av True -gp GoOgLePaSs
+```
+	
+Example 9 : Specify the location you mock when you sign TOS
+
+```
+pikaptcha -l 40.7127837,-74.005941
+Make sure there are no spaces in between the numbers, and make sure that there is only 1 comma in between both numbers
+```
+
+Example 10 : Specify the location to save the username:password. By default, it will save in the directory you run cmd/terminal from
+
+```
+pikaptcha -t "C:\Users\YoUr_UsEr\Desktop\usernames.txt"
+```
 	
 The PlusMail trick work as follows. Suppose your name is Mark and you own Mark@gmail.com as your email account. If I send an email to Mark+Jacob@gmail.com, it will still go to Mark@gmail.com. Similarly, if I send an email to Mark+asldksdjek@gmail.com, it will go to Mark@gmail.com. The PlusMail trick takes advantage of the fact that Niantic doesn't check that there isn't a difference between Mark and Mark+Jacob because not all email providers support this. When you use "-m mark+@gmail", it will generate emails like Mark+asdkjs@gmail.com differently for each account creation, but all emails will go to Mark@gmail.com
 	
-To verify all emails in one swoop, you can use this [script by Sebatienvercammen](https://gist.github.com/sebastienvercammen/e7e0e9e57db246d7f941b789d8508186)
+To verify all emails in one swoop, refer to Example 8 & 9
 	   
 	  
 ## Common Issues
