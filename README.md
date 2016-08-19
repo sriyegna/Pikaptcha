@@ -76,7 +76,7 @@ If you want to use the 2captcha service (if you cannot click the links, they are
 
 
 ## How to use
-Shift+Right Click your desktop and "Open command window here". OR open Terminal if on linux/osx. Note that usernames.txt (the file with the accounts) will be made on your desktop, or wherever you ran terminal from.
+Shift+Right Click your desktop and "Open command window here". OR open Terminal if on linux/osx. Note that usernames.txt (the file with the accounts) will be made on your desktop, or wherever you ran terminal/cmd from. To run pikaptcha, just type `pikaptcha` into the cmd/terminal. See examples below.
 
 You can type `pikaptcha --help` to see all parameters. Optional parameters are as follows.
 ```
