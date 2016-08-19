@@ -170,14 +170,26 @@ def create_account(username, password, email, birthday, captchakey2):
         recaptcharesponse = "CAPCHA_NOT_READY"
         elem = driver.find_element_by_class_name("g-recaptcha")
         driver.execute_script("arguments[0].scrollIntoView(true);", elem)
+        print"We will wait 10 seconds for captcha to be solved by 2captcha"
+        time.sleep(10)
         while recaptcharesponse == "CAPCHA_NOT_READY":
-            print "Wait 5 seconds. Captcha not solved yet."
-            time.sleep(5)
+            print "Captcha still not solved, waiting another 10 seconds."
+            time.sleep(10)
             recaptcharesponse = urllib2.urlopen("http://2captcha.com/res.php?key=" + captchakey2 + "&action=get&id=" + captchaid).read()
         solvedcaptcha = recaptcharesponse[3:]
+        captchalen = len(solvedcaptcha)
         elem = driver.find_element_by_name("g-recaptcha-response")
         elem = driver.execute_script("arguments[0].style.display = 'block'; return arguments[0];", elem)
-        elem.send_keys(solvedcaptcha)
+        elem.send_keys(solvedcaptcha[0:captchalen/10])
+        elem.send_keys(solvedcaptcha[captchalen/10:captchalen*2/10])
+        elem.send_keys(solvedcaptcha[captchalen*2/10:captchalen*3/10])
+        elem.send_keys(solvedcaptcha[captchalen*3/10:captchalen*4/10])
+        elem.send_keys(solvedcaptcha[captchalen*4/10:captchalen*5/10])
+        elem.send_keys(solvedcaptcha[captchalen*5/10:captchalen*6/10])
+        elem.send_keys(solvedcaptcha[captchalen*6/10:captchalen*7/10])
+        elem.send_keys(solvedcaptcha[captchalen*7/10:captchalen*8/10])
+        elem.send_keys(solvedcaptcha[captchalen*8/10:captchalen*9/10])
+        elem.send_keys(solvedcaptcha[captchalen*9/10:captchalen])        
         print "Solved captcha"
 	
     try:
