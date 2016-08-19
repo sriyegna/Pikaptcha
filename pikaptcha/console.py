@@ -7,7 +7,7 @@ from pikaptcha.ptcexceptions import *
 from pgoapi import PGoApi
 from pgoapi.utilities import f2i
 from pgoapi import utilities as util
-from pgoapi.exceptions import AuthException, ServerSideRequestThrottlingException
+from pgoapi.exceptions import AuthException, ServerSideRequestThrottlingException, NotLoggedInException
 import pprint
 import time
 import threading
@@ -84,18 +84,23 @@ def entry():
             print('Failed to create account! General error:  {}'.format(err))
 
 def accept_tos(username, password):
-    flag = False
-    while not flag:
         try:
-            api = PGoApi()
-            #Set spawn to NYC
-            api.set_position(40.7127837, -74.005941, 0.0)
-            api.login('ptc', username, password)
-            time.sleep(0.5)
-            req = api.create_request()
-            req.mark_tutorial_complete(tutorials_completed = 0, send_marketing_emails = False, send_push_notifications = False)
-            response = req.call()
-            print('Accepted Terms of Service for {}'.format(username))
-            flag = True
-        except ServerSideRequestThrottlingException:
-            print('This happens, just restart')
+                accept_tos_helper(username, password)
+        except ServerSideRequestThrottlingException as e:
+                print('Server side throttling, Waiting 10 seconds.')
+                time.sleep(10)
+                accept_tos_helper(username, password)
+        except NotLoggedInException as e1:
+                print('Could not login, Waiting for 10 seconds')
+                time.sleep(10)
+                accept_tos_helper(username, password)
+
+def accept_tos_helper(username, password):
+        api = PGoApi()
+        api.set_position(40.7127837, -74.005941, 0.0)
+        api.login('ptc', username, password)
+        time.sleep(1)
+        req = api.create_request()
+        req.mark_tutorial_complete(tutorials_completed = 0, send_marketing_emails = False, send_push_notifications = False)
+        response = req.call()
+        print('Accepted Terms of Service for {}'.format(username))
