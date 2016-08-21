@@ -148,7 +148,10 @@ def proc_mail(M):
         print "No messages found!"
         return
     else:
+        start_time = time.clock()
         for num in data[0].split():
+            if (time.clock() - start_time) > 20:
+                print("It has been more than 20 seconds. Please use an email address with an empty inbox.")
             rv, data = M.fetch(num, '(RFC822)')
             if rv != 'OK':
                 print "Error getting message "
