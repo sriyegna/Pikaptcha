@@ -78,37 +78,45 @@ def parse_arguments(args):
 def entry():
     """Main entry point for the package console commands"""
     args = parse_arguments(sys.argv[1:])
-    if (args.autoverify == True):
-        with open(args.textfile, "a") as ulist:
-            ulist.write("The following accounts use the email address: " + args.plusmail[:len(args.plusmail)-11] + "@gmail.com\n")
-            ulist.close()
-    for x in range(0,args.count):
-        print("Making account #" + str(x+1))
-        try:
-            account_info = pikaptcha.random_account(args.username, args.password, args.email, args.birthday, args.plusmail, args.recaptcha)
-            
-            print('  Username:  {}'.format(account_info["username"]))
-            print('  Password:  {}'.format(account_info["password"]))
-            print('  Email   :  {}'.format(account_info["email"]))
-            
-            # Accept Terms Service
-            accept_tos(account_info["username"], account_info["password"], args.location)
-
-            # Verify email
-            if (args.autoverify == True):
-                email_verify(args.plusmail, args.googlepass)
-            
-            # Append usernames 
+    if args.recaptcha != None:
+        captchabal = urllib2.urlopen("http://2captcha.com/res.php?key=" + args.recaptcha + "&action=getbalance").read()
+        print("Your 2captcha balance is: " + captchabal)
+        print("This run will cost you approximately: " + str(float(args.count)*0.003))
+    if (args.recaptcha != None and float(captchabal) < float(args.count)*0.003):
+        print("It does not seem like you have enough balance for this run. Lower the count or increase your balance.")
+        sys.exit()
+    else:
+        if (args.autoverify == True):
             with open(args.textfile, "a") as ulist:
-                ulist.write(account_info["username"]+":"+account_info["password"]+"\n")
+                ulist.write("The following accounts use the email address: " + args.plusmail[:len(args.plusmail)-11] + "@gmail.com\n")
                 ulist.close()
-        # Handle account creation failure exceptions
-        except PTCInvalidPasswordException as err:
-            print('Invalid password: {}'.format(err))
-        except (PTCInvalidEmailException, PTCInvalidNameException) as err:
-            print('Failed to create account! {}'.format(err))
-        except PTCException as err:
-            print('Failed to create account! General error:  {}'.format(err))
+        for x in range(0,args.count):
+            print("Making account #" + str(x+1))
+            try:
+                account_info = pikaptcha.random_account(args.username, args.password, args.email, args.birthday, args.plusmail, args.recaptcha)
+                
+                print('  Username:  {}'.format(account_info["username"]))
+                print('  Password:  {}'.format(account_info["password"]))
+                print('  Email   :  {}'.format(account_info["email"]))
+                
+                # Accept Terms Service
+                accept_tos(account_info["username"], account_info["password"], args.location)
+    
+                # Verify email
+                if (args.autoverify == True):
+                    email_verify(args.plusmail, args.googlepass)
+                
+                # Append usernames 
+                with open(args.textfile, "a") as ulist:
+                    ulist.write(account_info["username"]+":"+account_info["password"]+"\n")
+                    ulist.close()
+            # Handle account creation failure exceptions
+            except PTCInvalidPasswordException as err:
+                print('Invalid password: {}'.format(err))
+            except (PTCInvalidEmailException, PTCInvalidNameException) as err:
+                print('Failed to create account! {}'.format(err))
+            except PTCException as err:
+                print('Failed to create account! General error:  {}'.format(err))
 
 def accept_tos(username, password, location):
         try:

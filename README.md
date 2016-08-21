@@ -193,6 +193,8 @@ Please let us know what your issue is, instead of just saying it doesnt work. Co
 
 - selenium not found `pip install selenium`
 
+- Stuck on processing mailbox. Your mailbox is too populated. The script is going through each email finding the pokemon ones.
+
 ## Links
 - Google Chrome https://www.google.com/chrome/
 
