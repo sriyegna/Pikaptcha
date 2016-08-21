@@ -9,8 +9,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import StaleElementReferenceException
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from pikaptcha.jibber import *
 from pikaptcha.ptcexceptions import *
+
+user_agent = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) " + "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36")
 
 BASE_URL = "https://club.pokemon.com/us/pokemon-trainer-club"
 
@@ -106,8 +109,13 @@ def create_account(username, password, email, birthday, captchakey2):
         _validate_password(password)
 
     print("Attempting to create user {user}:{pw}. Opening browser...".format(user=username, pw=password))
-    driver = webdriver.Chrome()
-    driver.set_window_size(600, 600)
+    if captchakey2 != None:
+        dcap = dict(DesiredCapabilities.PHANTOMJS)
+        dcap["phantomjs.page.settings.userAgent"] = user_agent
+        driver = webdriver.PhantomJS(desired_capabilities=dcap)
+    else:
+        driver = webdriver.Chrome()
+        driver.set_window_size(600, 600)
 
     # Input age: 1992-01-08
     print("Step 1: Verifying age using birthday: {}".format(birthday))
@@ -169,7 +177,6 @@ def create_account(username, password, email, birthday, captchakey2):
         captchaid = recaptcharesponse[3:]
         recaptcharesponse = "CAPCHA_NOT_READY"
         elem = driver.find_element_by_class_name("g-recaptcha")
-        driver.execute_script("arguments[0].scrollIntoView(true);", elem)
         print"We will wait 10 seconds for captcha to be solved by 2captcha"
         time.sleep(10)
         while recaptcharesponse == "CAPCHA_NOT_READY":
@@ -180,16 +187,7 @@ def create_account(username, password, email, birthday, captchakey2):
         captchalen = len(solvedcaptcha)
         elem = driver.find_element_by_name("g-recaptcha-response")
         elem = driver.execute_script("arguments[0].style.display = 'block'; return arguments[0];", elem)
-        elem.send_keys(solvedcaptcha[0:captchalen/10])
-        elem.send_keys(solvedcaptcha[captchalen/10:captchalen*2/10])
-        elem.send_keys(solvedcaptcha[captchalen*2/10:captchalen*3/10])
-        elem.send_keys(solvedcaptcha[captchalen*3/10:captchalen*4/10])
-        elem.send_keys(solvedcaptcha[captchalen*4/10:captchalen*5/10])
-        elem.send_keys(solvedcaptcha[captchalen*5/10:captchalen*6/10])
-        elem.send_keys(solvedcaptcha[captchalen*6/10:captchalen*7/10])
-        elem.send_keys(solvedcaptcha[captchalen*7/10:captchalen*8/10])
-        elem.send_keys(solvedcaptcha[captchalen*8/10:captchalen*9/10])
-        elem.send_keys(solvedcaptcha[captchalen*9/10:captchalen])        
+        elem.send_keys(solvedcaptcha)      
         print "Solved captcha"
 	
     try:

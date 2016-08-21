@@ -10,7 +10,7 @@ Pikaptcha creates the PTC account and completes the TOS in game. It does NOT ver
 **For Windows**
 Install the following clickable links: (if you cannot click them, all links are at the bottom.)
 
-1. [Google Chrome](https://www.google.com/chrome/) installed to default directory in C:\
+1. If you intend to manually solve captcha, you need [Google Chrome](https://www.google.com/chrome/) installed to default directory in C:\Program Files\
 
 2. [Python 2.7.12](https://www.python.org/downloads/release/python-2712/). Do this during setup. http://imgur.com/k421LiP
 
@@ -22,7 +22,7 @@ Install the following clickable links: (if you cannot click them, all links are 
 
 6. Type `path` and hit enter. You should see C:\Python27, C:\Python27\Scripts, and C:\Program Files\Git\cmd
 
-7. [Download Chromedriver](http://chromedriver.storage.googleapis.com/2.23/chromedriver_win32.zip). Unzip the file and place it in C:\Python27\Scripts
+7. If you intend to manually solve captcha, [Download Chromedriver](http://chromedriver.storage.googleapis.com/2.23/chromedriver_win32.zip). Unzip the file and place it in C:\Python27\Scripts
 
 8. Shift+Right Click your desktop and "Open command window here".
 
@@ -63,17 +63,21 @@ If you want to uninstall pikaptcha, all you need to do to uninstall is open CMD 
 ## Using 2captcha
 If you want to use the 2captcha service (if you cannot click the links, they are also at the bottom of the readme)
 
-1. [You need to sign up here](https://2captcha.com/auth/register)
+1. You need to download [PhantomJS](http://phantomjs.org/download.html)
 
-2. [Verify your email (if needed) and login](https://2captcha.com/auth/login)
+2. You need to open the .zip file, open the phantomjs-2.x.x-windows folder, open the bin folder, and put phantomjs.exe in C:\Python27\Scripts
 
-3. Either work (Start Work on top) or deposit money (Deposit on left). Get a balance or you will have no credit to solve captchas
+3. [You need to sign up here](https://2captcha.com/auth/register)
 
-4. Click the "2Captcha API" tab at the top
+4. [Verify your email (if needed) and login](https://2captcha.com/auth/login)
 
-5. Look for captcha KEY. There should be a long string after that like a6ebcb3f4a7b6f6e319d8e1c37e25ec4
+5. Either work (Start Work on top) or deposit money (Deposit on left). Get a balance or you will have no credit to solve captchas
 
-6. For the rest of the guide %YOUR_2CAPTCHA_KEY%=the string you found there
+6. Click the "2Captcha API" tab at the top
+
+7. Look for captcha KEY. There should be a long string after that like a6ebcb3f4a7b6f6e319d8e1c37e25ec4
+
+8. For the rest of the guide %YOUR_2CAPTCHA_KEY%=the string you found there
 
 ## Using Auto-Email Verify
 If you want to automatically verify emails, there are some specific instructions you need to follow. To help you understand plusmail, I wrote this snippet.
