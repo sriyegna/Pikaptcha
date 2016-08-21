@@ -168,7 +168,7 @@ To verify all emails in one swoop, refer to Example 8 & 9
 	   
 	  
 ## Common Issues
-If you are still having troubles, you can join us at [discord channel](https://discord.gg/VvwyS) https://discord.gg/VvwyS
+If you are still having troubles, you can join us at [discord channel](https://discord.gg/PfX5B7F) https://discord.gg/PfX5B7F
 Please let us know what your issue is, instead of just saying it doesnt work. Copying the error code you receive is very helpful.
 
 - Cannot find chrome binary. Chrome should be installed to the default directory in C. Ensure that it is. If it is, try uninstalling and reinstalling.
