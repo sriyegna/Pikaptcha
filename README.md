@@ -84,7 +84,7 @@ To verify all emails while running, refer to Example 8 & 9. You also need to all
 ~ Thoridal
 
 ## How to use
-Shift+Right Click your desktop and "Open command window here". OR open Terminal if on linux/osx. Note that usernames.txt (the file with the accounts) will be made on your desktop, or wherever you ran terminal/cmd from. To run pikaptcha, just type `pikaptcha` into the cmd/terminal. See examples below.
+Shift+Right Click your desktop and "Open command window here". OR open Terminal if on linux/osx. Note that usernames.txt (the file with the accounts) will be made on your desktop, or wherever you ran terminal/cmd from. To run pikaptcha, just type `pikaptcha` into the cmd/terminal. Do not run from C:\ unless you read Example 10. See examples below.
 
 You can type `pikaptcha --help` to see all parameters. Optional parameters are as follows.
 ```
@@ -167,6 +167,7 @@ Example 10 : Specify the location to save the username:password. By default, it 
 
 ```
 pikaptcha -t "C:\Users\YoUr_UsEr\Desktop\usernames.txt"
+You need to run cmd as admin if you want to save in C:\
 ```
 
 	  
