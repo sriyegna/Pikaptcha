@@ -88,7 +88,7 @@ def entry():
     else:
         if (args.autoverify == True):
             with open(args.textfile, "a") as ulist:
-                ulist.write("The following accounts use the email address: " + args.plusmail[:len(args.plusmail)-11] + "@gmail.com\n")
+                ulist.write("The following accounts use the email address: " + args.plusmail + "@gmail.com\n")
                 ulist.close()
         for x in range(0,args.count):
             print("Making account #" + str(x+1))
@@ -172,7 +172,7 @@ def proc_mail(M):
 def email_verify(plusmail, googlepass):
     time.sleep(5)
     #Waiting 5 seconds before checking email
-    email_address = plusmail[:len(plusmail)-11] + "@gmail.com"
+    email_address = plusmail
     M = imaplib.IMAP4_SSL('imap.gmail.com')    
     try:
         M.login(email_address, googlepass)

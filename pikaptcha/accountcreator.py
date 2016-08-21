@@ -228,7 +228,7 @@ def random_account(username=None, password=None, email=None, birthday=None, plus
     try_email = _random_email() if email is None else str(email)
     captchakey2 = None if recaptcha is None else str(recaptcha)
     if plusmail is not None:
-        pm = plusmail.split("+@")
+        pm = plusmail.split("@")
         try_email = pm[0] + "+" + try_username + "@" + pm[1]
     try_birthday = _random_birthday() if birthday is None else str(birthday)
 
