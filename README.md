@@ -75,6 +75,13 @@ If you want to use the 2captcha service (if you cannot click the links, they are
 
 6. For the rest of the guide %YOUR_2CAPTCHA_KEY%=the string you found there
 
+## Using Auto-Email Verify
+If you want to automatically verify emails, there are some specific instructions you need to follow. To help you understand plusmail, I wrote this snippet.
+
+The PlusMail trick work as follows. Suppose your name is Mark and you own Mark@gmail.com as your email account. If I send an email to Mark+Jacob@gmail.com, it will still go to Mark@gmail.com. Similarly, if I send an email to Mark+asldksdjek@gmail.com, it will go to Mark@gmail.com. The PlusMail trick takes advantage of the fact that Niantic doesn't check that there isn't a difference between Mark and Mark+Jacob because not all email providers support this. When you use "-m mark+@gmail", it will generate emails like Mark+asdkjs@gmail.com differently for each account creation, but all emails will go to Mark@gmail.com
+	
+To verify all emails while running, refer to Example 8 & 9. You also need to allow less secure apps to connect to your google account because of the python imap library. https://support.google.com/accounts/answer/6010255?hl=en
+~ Thoridal
 
 ## How to use
 Shift+Right Click your desktop and "Open command window here". OR open Terminal if on linux/osx. Note that usernames.txt (the file with the accounts) will be made on your desktop, or wherever you ran terminal/cmd from. To run pikaptcha, just type `pikaptcha` into the cmd/terminal. See examples below.
@@ -161,11 +168,7 @@ Example 10 : Specify the location to save the username:password. By default, it 
 ```
 pikaptcha -t "C:\Users\YoUr_UsEr\Desktop\usernames.txt"
 ```
-	
-The PlusMail trick work as follows. Suppose your name is Mark and you own Mark@gmail.com as your email account. If I send an email to Mark+Jacob@gmail.com, it will still go to Mark@gmail.com. Similarly, if I send an email to Mark+asldksdjek@gmail.com, it will go to Mark@gmail.com. The PlusMail trick takes advantage of the fact that Niantic doesn't check that there isn't a difference between Mark and Mark+Jacob because not all email providers support this. When you use "-m mark+@gmail", it will generate emails like Mark+asdkjs@gmail.com differently for each account creation, but all emails will go to Mark@gmail.com
-	
-To verify all emails in one swoop, refer to Example 8 & 9
-	   
+
 	  
 ## Common Issues
 If you are still having troubles, you can join us at [discord channel](https://discord.gg/PfX5B7F) https://discord.gg/PfX5B7F
