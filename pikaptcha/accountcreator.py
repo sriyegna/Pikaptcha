@@ -8,7 +8,7 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import StaleElementReferenceException
+from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from pikaptcha.jibber import *
 from pikaptcha.ptcexceptions import *
@@ -164,9 +164,12 @@ def create_account(username, password, email, birthday, captchakey2):
         elem = driver.find_element_by_class_name("g-recaptcha")
         driver.execute_script("arguments[0].scrollIntoView(true);", elem)
         # Waits 1 minute for you to input captcha
-        WebDriverWait(driver, 60).until(EC.text_to_be_present_in_element_value((By.ID, "g-recaptcha-response"), ""))
-        print("Captcha successful. Sleeping for 1 second...")
-        time.sleep(1)
+        try:
+            WebDriverWait(driver, 60).until(EC.text_to_be_present_in_element_value((By.NAME, "g-recaptcha-response"), ""))
+            print("Captcha successful. Sleeping for 1 second...")
+            time.sleep(1)
+        except TimeoutException, err:
+            print("Timed out while manually solving captcha")
     else:
         # Now to automatically handle captcha
         print("Starting autosolve recaptcha")
