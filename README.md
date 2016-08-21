@@ -82,7 +82,7 @@ If you want to use the 2captcha service (if you cannot click the links, they are
 ## Using Auto-Email Verify
 If you want to automatically verify emails, there are some specific instructions you need to follow. To help you understand plusmail, I wrote this snippet.
 
-The PlusMail trick work as follows. Suppose your name is Mark and you own Mark@gmail.com as your email account. If I send an email to Mark+Jacob@gmail.com, it will still go to Mark@gmail.com. Similarly, if I send an email to Mark+asldksdjek@gmail.com, it will go to Mark@gmail.com. The PlusMail trick takes advantage of the fact that Niantic doesn't check that there isn't a difference between Mark and Mark+Jacob because not all email providers support this. When you use "-m mark+@gmail", it will generate emails like Mark+asdkjs@gmail.com differently for each account creation, but all emails will go to Mark@gmail.com
+The PlusMail trick work as follows. Suppose your name is Mark and you own Mark@gmail.com as your email account. If I send an email to Mark+Jacob@gmail.com, it will still go to Mark@gmail.com. Similarly, if I send an email to Mark+asldksdjek@gmail.com, it will go to Mark@gmail.com. The PlusMail trick takes advantage of the fact that Niantic doesn't check that there isn't a difference between Mark and Mark+Jacob because not all email providers support this. When you use "-m mark@gmail", it will generate emails like Mark+asdkjs@gmail.com differently for each account creation, but all emails will go to Mark@gmail.com. To use the plusmail trick, refer to any example with the argument -m
 	
 To verify all emails while running, refer to Example 8 & 9. You also need to allow less secure apps to connect to your google account because of the python imap library. https://support.google.com/accounts/answer/6010255?hl=en
 ~ Thoridal
@@ -97,7 +97,7 @@ You can type `pikaptcha --help` to see all parameters. Optional parameters are a
 	--username, -u #This is the username
 	--password, -p #This is the password
 	--email, -e #This is the email
-	--plusmail, -m #Suppose your gmail address is test@gmail.com. If you use -m test+@gmail.com, this will activate the plusmail trick
+	--plusmail, -m #Suppose your gmail address is test@gmail.com. If you use -m test@gmail.com, this will activate the plusmail trick
 	--count, -c #This is the number of accounts to make
 	--recaptcha, -r #This is your 2captcha key
 	--autoverify, -av #Set this to True if you want to autoverify emails. Otherwise False (or don't use the tag)
@@ -147,19 +147,19 @@ pikaptcha -u UsErNaMe -r %YOUR_2CAPTCHA_KEY%
 Example 7 : Create 10 accounts using a single email address (read below on plusmail for more info) with automated captcha solving
 
 ```
-pikaptcha -p PaSsWoRd -c 10 -m emailaddress+@gmail.com -r %YOUR_2CAPTCHA_KEY%
+pikaptcha -p PaSsWoRd -c 10 -m emailaddress@gmail.com -r %YOUR_2CAPTCHA_KEY%
 ```
 
 Example 8 : Create 5 accounts using the plusmail trick with email verification and manual captcha solving
 
 ```
-pikaptcha -c 5 -m emailaddress+@gmail.com -av True -gp GoOgLePaSs
+pikaptcha -c 5 -m emailaddress@gmail.com -av True -gp GoOgLePaSs
 ```
 
 Example 8 : Create 5 accounts using the plusmail trick with email verification and automated captcha solving
 
 ```
-pikaptcha -c 5 -m emailaddress+@gmail.com -r %YOUR_2CAPTCHA_KEY% -av True -gp GoOgLePaSs
+pikaptcha -c 5 -m emailaddress@gmail.com -r %YOUR_2CAPTCHA_KEY% -av True -gp GoOgLePaSs
 ```
 	
 Example 9 : Specify the location you mock when you sign TOS
