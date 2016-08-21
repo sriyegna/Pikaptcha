@@ -83,6 +83,8 @@ The PlusMail trick work as follows. Suppose your name is Mark and you own Mark@g
 To verify all emails while running, refer to Example 8 & 9. You also need to allow less secure apps to connect to your google account because of the python imap library. https://support.google.com/accounts/answer/6010255?hl=en
 ~ Thoridal
 
+Also, to verify emails, you should have a relatively empty inbox. Else it needs to index your whole Inbox folder everytime and that isn't very fun.
+
 ## How to use
 Shift+Right Click your desktop and "Open command window here". OR open Terminal if on linux/osx. Note that usernames.txt (the file with the accounts) will be made on your desktop, or wherever you ran terminal/cmd from. To run pikaptcha, just type `pikaptcha` into the cmd/terminal. Do not run from C:\ unless you read Example 10. See examples below.
 
