@@ -41,7 +41,7 @@ def parse_arguments(args):
     )
     parser.add_argument(
         '-m', '--plusmail', type=str, default=None,
-        help='Email template for the new account. Use something like aaaa+@gmail.com (defaults to nothing).'
+        help='Email template for the new account. Use something like aaaa@gmail.com (defaults to nothing).'
     )
     parser.add_argument(
         '-av', '--autoverify', type=bool, default=False,
