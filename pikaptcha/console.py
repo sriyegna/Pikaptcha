@@ -88,7 +88,7 @@ def entry():
     else:
         if (args.autoverify == True):
             with open(args.textfile, "a") as ulist:
-                ulist.write("The following accounts use the email address: " + args.plusmail + "@gmail.com\n")
+                ulist.write("The following accounts use the email address: " + args.plusmail + "\n")
                 ulist.close()
         for x in range(0,args.count):
             print("Making account #" + str(x+1))
