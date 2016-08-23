@@ -12,6 +12,7 @@ from selenium.common.exceptions import StaleElementReferenceException, TimeoutEx
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from pikaptcha.jibber import *
 from pikaptcha.ptcexceptions import *
+from pikaptcha.url import *
 
 user_agent = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) " + "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36")
 
@@ -40,19 +41,11 @@ def _random_email(local_length=10, sub_domain_length=5, top_domain=".com"):
 
 
 def _random_birthday():
-    """
-    Creates a birthday between 1980 and 1990
-    :return: string
-    """
     start = datetime.datetime(1980, 1, 1)
     end = datetime.datetime(1990, 12, 31)
-
     diff = end - start
-
     random_duration = random.randint(0, diff.total_seconds())
-
     birthday = start + datetime.timedelta(seconds=random_duration)
-
     return "{year}-{month:0>2}-{day:0>2}".format(year=birthday.year, month=birthday.month, day=birthday.day)
 
 
@@ -88,23 +81,7 @@ def _validate_password(password):
     return True
 
 
-def create_account(username, password, email, birthday, captchakey2):
-    """
-    As per PTCAccount by jepayne1138, this function raises:
-      PTCInvalidNameException: If the given username is already in use.
-      PTCInvalidPasswordException: If the given password is not a valid
-        password that can be used to make an account. (Currently just
-        validates length, so this means the given password was not between
-        6 and 15 characters long.)
-      PTCInvalidEmailException: If the given email was either in an invalid
-        format (i.e. not local@subdomain.domain) or the email is already
-        registered to an existing account.
-      PTCInvalidStatusCodeException: If an invalid status code was received
-        at any time. (Server or underlying code issue; try again and submit
-        bug report on continues failure if creation works in browser.)
-      AssertionError: If something a URL is not as expected
-    This function returns true if account was created. Raises exceptions rather than returning false.
-    """
+def create_account(username, password, email, birthday, captchakey2, captchatimeout):
     if password is not None:
         _validate_password(password)
 
@@ -176,23 +153,33 @@ def create_account(username, password, email, birthday, captchakey2):
         html_source = driver.page_source
         gkey_index = html_source.find("https://www.google.com/recaptcha/api2/anchor?k=") + 47
         gkey = html_source[gkey_index:gkey_index+40]
-        recaptcharesponse = urllib2.urlopen("http://2captcha.com/in.php?key=" + captchakey2 + "&method=userrecaptcha&googlekey=" + gkey).read()
+        recaptcharesponse = "Failed"
+        while(recaptcharesponse == "Failed"):
+            recaptcharesponse = openurl("http://2captcha.com/in.php?key=" + captchakey2 + "&method=userrecaptcha&googlekey=" + gkey)
         captchaid = recaptcharesponse[3:]
         recaptcharesponse = "CAPCHA_NOT_READY"
         elem = driver.find_element_by_class_name("g-recaptcha")
         print"We will wait 10 seconds for captcha to be solved by 2captcha"
-        time.sleep(10)
+        start_time = time.clock()
+        timedout = False
         while recaptcharesponse == "CAPCHA_NOT_READY":
+            time.sleep(10)            
+            elapsedtime = time.clock() - start_time
+            if elapsedtime > captchatimeout:
+                print("Captcha timeout reached. Exiting.")
+                timedout = True
+                break
             print "Captcha still not solved, waiting another 10 seconds."
-            time.sleep(10)
-            recaptcharesponse = urllib2.urlopen("http://2captcha.com/res.php?key=" + captchakey2 + "&action=get&id=" + captchaid).read()
-        solvedcaptcha = recaptcharesponse[3:]
-        captchalen = len(solvedcaptcha)
-        elem = driver.find_element_by_name("g-recaptcha-response")
-        elem = driver.execute_script("arguments[0].style.display = 'block'; return arguments[0];", elem)
-        elem.send_keys(solvedcaptcha)      
-        print "Solved captcha"
-	
+            recaptcharesponse = "Failed"
+            while(recaptcharesponse == "Failed"):
+                recaptcharesponse = openurl("http://2captcha.com/res.php?key=" + captchakey2 + "&action=get&id=" + captchaid)
+        if timedout == False:       
+            solvedcaptcha = recaptcharesponse[3:]
+            captchalen = len(solvedcaptcha)
+            elem = driver.find_element_by_name("g-recaptcha-response")
+            elem = driver.execute_script("arguments[0].style.display = 'block'; return arguments[0];", elem)
+            elem.send_keys(solvedcaptcha)      
+            print "Solved captcha"
     try:
         user.submit()
     except StaleElementReferenceException:
@@ -225,7 +212,7 @@ def _validate_response(driver):
         raise PTCException("Generic failure. User was not created.")
 
 
-def random_account(username=None, password=None, email=None, birthday=None, plusmail=None, recaptcha=None):
+def random_account(username=None, password=None, email=None, birthday=None, plusmail=None, recaptcha=None, captchatimeout=1000):
     try_username = _random_string() if username is None else str(username)
     password = _random_string() if password is None else str(password)
     try_email = _random_email() if email is None else str(email)
@@ -241,7 +228,7 @@ def random_account(username=None, password=None, email=None, birthday=None, plus
     account_created = False
     while not account_created:
         try:
-            account_created = create_account(try_username, password, try_email, try_birthday, captchakey2)
+            account_created = create_account(try_username, password, try_email, try_birthday, captchakey2, captchatimeout)
         except PTCInvalidNameException:
             if username is None:
                 try_username = _random_string()

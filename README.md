@@ -82,12 +82,12 @@ If you want to use the 2captcha service (if you cannot click the links, they are
 ## Using Auto-Email Verify
 If you want to automatically verify emails, there are some specific instructions you need to follow. To help you understand plusmail, I wrote this snippet.
 
-The PlusMail trick work as follows. Suppose your name is Mark and you own Mark@gmail.com as your email account. If I send an email to Mark+Jacob@gmail.com, it will still go to Mark@gmail.com. Similarly, if I send an email to Mark+asldksdjek@gmail.com, it will go to Mark@gmail.com. The PlusMail trick takes advantage of the fact that Niantic doesn't check that there isn't a difference between Mark and Mark+Jacob because not all email providers support this. When you use "-m mark@gmail", it will generate emails like Mark+asdkjs@gmail.com differently for each account creation, but all emails will go to Mark@gmail.com. To use the plusmail trick, refer to any example with the argument -m
-	
-To verify all emails while running, refer to Example 8 & 9. You also need to allow less secure apps to connect to your google account because of the python imap library. https://support.google.com/accounts/answer/6010255?hl=en
+**To verify all emails while running, refer to Example 8 & 9. You also need to allow less secure apps to connect to your google account because of the python imap library. https://support.google.com/accounts/answer/6010255?hl=en**
 ~ Thoridal
 
 Also, to verify emails, you should have a relatively empty inbox. Else it needs to index your whole Inbox folder everytime and that isn't very fun.
+
+The PlusMail trick work as follows. Suppose your name is Mark and you own Mark@gmail.com as your email account. If I send an email to Mark+Jacob@gmail.com, it will still go to Mark@gmail.com. Similarly, if I send an email to Mark+asldksdjek@gmail.com, it will go to Mark@gmail.com. The PlusMail trick takes advantage of the fact that Niantic doesn't check that there isn't a difference between Mark and Mark+Jacob because not all email providers support this. When you use "-m mark@gmail", it will generate emails like Mark+asdkjs@gmail.com differently for each account creation, but all emails will go to Mark@gmail.com. To use the plusmail trick, refer to any example with the argument -m
 
 ## How to use
 Shift+Right Click your desktop and "Open command window here". OR open Terminal if on linux/osx. Note that usernames.txt (the file with the accounts) will be made on your desktop, or wherever you ran terminal/cmd from. To run pikaptcha, just type `pikaptcha` into the cmd/terminal. Do not run from C:\ unless you read Example 10. See examples below.
@@ -102,6 +102,12 @@ You can type `pikaptcha --help` to see all parameters. Optional parameters are a
 	--recaptcha, -r #This is your 2captcha key
 	--autoverify, -av #Set this to True if you want to autoverify emails. Otherwise False (or don't use the tag)
 	--googlepass, -gp #This is the password to your google account if you are using -m argument and -av True
+	--location, -l #This is the location that is spoofed when accepting TOS
+	--textfile, -t #This is the location of the output text file. Eg: -l C:\users\sri\desktop\user.txt
+	--outputformat, -of #If you pass pkgo, it will print in the PokemonGo-Map format (-u user -p pass).
+	--startnum, -sn #If you use -c and -u, it will start counting from this number instead
+	--captchatimeout, -ct #If you want captcha to timeout of after n seconds	
+	--inputtext, -it #If you want to read user:pass from file
 ```
 
 Example 1 : Create an entirely random account by manually entering the captcha yourself
@@ -176,6 +182,38 @@ pikaptcha -t "C:\Users\YoUr_UsEr\Desktop\usernames.txt"
 You need to run cmd as admin if you want to save in C:\
 ```
 
+Example 11 : Make the output file formatted for PokemonGo-Map.
+
+```
+pikaptcha -of pkgo
+```
+
+Example 12 : Creating multiple accounts with the same username + 1, 2, 3, ...
+```
+pikaptcha -u user -c 10
+this will create user1, user2, ..., user 10
+```
+
+Example 13 : Creating multiple accounts with the same username + a number that increments by 1 starting at 15
+```
+pikaptcha -u user -c 10 -sn 15
+this will create user15, user16, ..., user 24
+```
+
+Exxample 14 : If it takes longer than 40 seconds to solve captcha, cancel the request and forfeit $0.003
+```
+pikaptcha -ct 40 -r %YOUR_2CAPTCHA_KEY%
+```
+
+Example 15 : Read user:pass from a file. It should be formatted like so
+```
+mark:pass1
+jacob:pass2
+james:passn
+```
+```
+pikaptcha -it C:\user\sri\desktop\inputaccs.txt
+```
 	  
 ## Common Issues
 If you are still having troubles, you can join us at [discord channel](https://discord.gg/PfX5B7F) https://discord.gg/PfX5B7F
