@@ -104,8 +104,8 @@ def entry():
     
     if args.inputtext != None:
         print("Reading accounts from: " + args.inputtext)
-        lines = [line.rstrip('\n') for line in open(args.inputtext)]
-        args.count = len(lines) - 1
+        lines = [line.rstrip('\n') for line in open(args.inputtext, "r")]
+        args.count = len(lines)
         
     if (args.recaptcha != None and float(captchabal) < float(args.count)*0.003):
         print("It does not seem like you have enough balance for this run. Lower the count or increase your balance.")

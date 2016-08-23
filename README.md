@@ -3,6 +3,7 @@ Based off pikapy by skvvv, which is based off ptc2 Kitryn, which is based off pt
 Also uses pogoapi from keyphact
 
 Was updated with several features/fixes on Aug 23 2016. To update open CMD or terminal
+^^Update also broke (email verification) which is now fixed as of Aug 23 2016 5:30AM EST. Update again please.
 `pip install --upgrade git+https://github.com/sriyegna/pikaptcha`
 
 ## Description
