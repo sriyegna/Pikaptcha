@@ -2,6 +2,9 @@
 Based off pikapy by skvvv, which is based off ptc2 Kitryn, which is based off ptcaccount by jepayne1138, etc.
 Also uses pogoapi from keyphact
 
+Was updated with several features/fixes on Aug 23 2016. To update open CMD or terminal
+'pip install --upgrade git+https://github.com/sriyegna/pikaptcha'
+
 ## Description
 Pikaptcha creates PTC accounts by creating a chrome session and automatically entering data in the required fields. If you choose to use the 2captcha service, the entire script can be run automatically, else you will need to manually solve captchas.
 Pikaptcha creates the PTC account and completes the TOS in game. It does NOT verify emails. See below for a script to verify emails by using the plusmail trick.
