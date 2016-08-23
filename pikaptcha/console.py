@@ -158,17 +158,3 @@ def entry():
             except Exception:
                 import traceback
                 print("Generic Exception: " + traceback.format_exc())
-
-
-<<<<<<< HEAD
-=======
-        rv, mailboxes = M.list()
-        rv, data = M.select("INBOX")
-        if rv == 'OK':
-            print "Processing mailbox..."
-            proc_mail(M)
-            M.close()
-        M.logout()
-    except imaplib.IMAP4.error:
-        print "Unable to login to: " + email_address + ". Was not verified\n"
->>>>>>> origin/master
