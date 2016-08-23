@@ -189,6 +189,7 @@ Example 11 : Make the output file formatted for PokemonGo-Map.
 
 ```
 pikaptcha -of pkgo
+will output -u user1 -p pass1 -u user2 -p pass2 -u user3 -p pass3
 ```
 
 Example 12 : Creating multiple accounts with the same username + 1, 2, 3, ...
