@@ -14,6 +14,7 @@ import getopt
 import urllib2
 import imaplib
 import string
+import re
 
 
 def parse_arguments(args):
@@ -89,6 +90,30 @@ def parse_arguments(args):
 
     return parser.parse_args(args)
 
+def _verify_autoverify_email(settings):
+    if (settings['args'].autoverify == True and settings['args'].plusmail == None):
+        raise PTCInvalidEmailException("You have to specify a plusmail (--plusmail or -m) to use autoverification.")
+    if (settings['args'].autoverify == True and settings['args'].googlepass == None):
+        raise PTCInvalidEmailException("You have to specify a googlepass (--googlepass or -gp) to use autoverification.")
+
+def _verify_plusmail_format(settings):
+    if (settings['args'].plusmail != None and not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", settings['args'].plusmail)):
+        raise PTCInvalidEmailException("Invalid email format to use with plusmail.")
+
+def _verify_twocaptcha_balance(settings):
+    if (settings['args'].recaptcha != None and float(settings['balance']) < float(settings['args'].count)*0.003):
+        raise PTCTwocaptchaException("It does not seem like you have enough balance for this run. Lower the count or increase your balance.")
+
+def _verify_settings(settings):
+    verifications=[_verify_autoverify_email, _verify_plusmail_format, _verify_twocaptcha_balance]
+    for verification in verifications:
+        try:
+            verification(settings)
+        except PTCException, e:
+            print e.message
+            print "Terminating."
+            sys.exit()
+    return True
 
 def entry():
     """Main entry point for the package console commands"""
@@ -107,10 +132,7 @@ def entry():
         lines = [line.rstrip('\n') for line in open(args.inputtext, "r")]
         args.count = len(lines)
         
-    if (args.recaptcha != None and float(captchabal) < float(args.count)*0.003):
-        print("It does not seem like you have enough balance for this run. Lower the count or increase your balance.")
-        sys.exit()
-    else:
+    if _verify_settings({'args':args, 'balance':captchabal}):
         if (args.autoverify == True):
             with open(args.textfile, "a") as ulist:
                 ulist.write("The following accounts use the email address: " + args.plusmail + "\n")

@@ -5,6 +5,7 @@ __all__ = [
     'PTCInvalidEmailException',
     'PTCInvalidPasswordException',
     'PTCInvalidBirthdayException',
+    'PTCTwocaptchaException'
 ]
 
 
@@ -35,4 +36,8 @@ class PTCInvalidPasswordException(PTCException):
 
 class PTCInvalidBirthdayException(PTCException):
     """Birthday invalid"""
+    pass
+
+class PTCTwocaptchaException(PTCException):
+    """2captcha unable to provide service"""
     pass
