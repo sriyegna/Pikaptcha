@@ -93,6 +93,8 @@ def parse_arguments(args):
 def _verify_autoverify_email(settings):
     if (settings['args'].autoverify == True and settings['args'].plusmail == None):
         raise PTCInvalidEmailException("You have to specify a plusmail (--plusmail or -m) to use autoverification.")
+    if (settings['args'].autoverify == True and settings['args'].googlepass == None):
+        raise PTCInvalidEmailException("You have to specify a googlepass (--googlepass or -gp) to use autoverification.")
 
 def _verify_plusmail_format(settings):
     if (settings['args'].plusmail != None and not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", settings['args'].plusmail)):
