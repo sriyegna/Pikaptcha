@@ -158,3 +158,6 @@ def entry():
             except Exception:
                 import traceback
                 print("Generic Exception: " + traceback.format_exc())
+        with open(args.textfile, "a") as ulist:
+            ulist.write("\n")
+            ulist.close()
