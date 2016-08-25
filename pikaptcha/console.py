@@ -122,8 +122,8 @@ def entry():
     args = parse_arguments(sys.argv[1:])
     captchabal = None
     if args.recaptcha != None:
-        captchabal = "Failed."
-        while(captchabal == "Failed."):
+        captchabal = "Failed"
+        while(captchabal == "Failed"):
             captchabal = openurl("http://2captcha.com/res.php?key=" + args.recaptcha + "&action=getbalance")
         print("Your 2captcha balance is: " + captchabal)
         print("This run will cost you approximately: " + str(float(args.count)*0.003))
