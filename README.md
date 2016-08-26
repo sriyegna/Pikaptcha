@@ -1,4 +1,6 @@
 # Pikaptcha
+**I am currently in the process of moving so development is going to be very slow for the next few days. A GUI is almost in place that will account for most of the user input errors. **
+
 Based off pikapy by skvvv, which is based off ptc2 Kitryn, which is based off ptcaccount by jepayne1138, etc.
 Also uses pogoapi from keyphact
 
