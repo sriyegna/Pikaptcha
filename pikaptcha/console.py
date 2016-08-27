@@ -158,7 +158,7 @@ def entry():
                     print('  Password:  {}'.format(account_info["password"]))
                     print('  Email   :  {}'.format(account_info["email"]))
                     
-                    # Accept Terms Service
+                    # Accespt Terms Service
                     accept_tos(account_info["username"], account_info["password"], args.location)
         
                     # Verify email
