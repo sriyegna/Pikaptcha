@@ -31,7 +31,7 @@ def accept_tos_helper(username, password, location, proxy):
     api.set_authentication(provider = 'ptc', username = username, password = password)
     response = api.app_simulation_login()
     if response == None:
-        print "Servers do not respond to login attempt." + failMessage
+        print "Servers do not respond to login attempt. " + failMessage
         return
 
     time.sleep(1)
@@ -39,7 +39,7 @@ def accept_tos_helper(username, password, location, proxy):
     req.mark_tutorial_complete(tutorials_completed = 0, send_marketing_emails = False, send_push_notifications = False)
     response = req.call()
     if response == None:
-        print "Servers do not respond to accepting the ToS." + failMessage
+        print "Servers do not respond to accepting the ToS. " + failMessage
         return
 
     print('Accepted Terms of Service for {}'.format(username))
