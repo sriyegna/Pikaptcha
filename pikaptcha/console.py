@@ -86,6 +86,10 @@ def parse_arguments(args):
     parser.add_argument(
         '-l','--location', type=str, default="40.7127837,-74.005941",
         help='This is the location that will be spoofed when we verify TOS'
+    )
+    parser.add_argument(
+        '-px','--proxy', type=str, default=None,
+        help='Proxy to be used when accepting the Terms of Services. Must be host:port (ex. 1.1.1.1:80). Must be a HTTPS proxy.'
     )        
 
     return parser.parse_args(args)
@@ -159,7 +163,7 @@ def entry():
                     print('  Email   :  {}'.format(account_info["email"]))
                     
                     # Accept Terms Service
-                    accept_tos(account_info["username"], account_info["password"], args.location)
+                    accept_tos(account_info["username"], account_info["password"], args.location, args.proxy)
         
                     # Verify email
                     if (args.autoverify == True):

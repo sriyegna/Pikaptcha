@@ -114,6 +114,7 @@ You can type `pikaptcha --help` to see all parameters. Optional parameters are a
 	--startnum, -sn #If you use -c and -u, it will start counting from this number instead
 	--captchatimeout, -ct #If you want captcha to timeout of after n seconds	
 	--inputtext, -it #If you want to read user:pass from file
+	--proxy, -px #Proxy to be used when accepting the Terms of Services. Must be host:port (ex. 1.1.1.1:80). Must be a HTTPS proxy.
 ```
 
 Example 1 : Create an entirely random account by manually entering the captcha yourself
@@ -220,6 +221,11 @@ james:passn
 ```
 ```
 pikaptcha -it C:\user\sri\desktop\inputaccs.txt
+```
+
+Example 16 : Use proxy when accepting the Terms of Services.
+```
+pikaptcha -px 1.1.1.1:80
 ```
 	  
 ## Common Issues
