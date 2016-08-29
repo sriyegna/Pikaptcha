@@ -169,51 +169,51 @@ Example 8 : Create 5 accounts using the plusmail trick with email verification a
 pikaptcha -c 5 -m emailaddress@gmail.com -av True -gp GoOgLePaSs
 ```
 
-Example 8 : Create 5 accounts using the plusmail trick with email verification and automated captcha solving
+Example 9 : Create 5 accounts using the plusmail trick with email verification and automated captcha solving
 
 ```
 pikaptcha -c 5 -m emailaddress@gmail.com -r %YOUR_2CAPTCHA_KEY% -av True -gp GoOgLePaSs
 ```
 	
-Example 9 : Specify the location you mock when you sign TOS
+Example 10 : Specify the location you mock when you sign TOS
 
 ```
 pikaptcha -l 40.7127837,-74.005941
 Make sure there are no spaces in between the numbers, and make sure that there is only 1 comma in between both numbers
 ```
 
-Example 10 : Specify the location to save the username:password. By default, it will save in the directory you run cmd/terminal from
+Example 11 : Specify the location to save the username:password. By default, it will save in the directory you run cmd/terminal from
 
 ```
 pikaptcha -t "C:\Users\YoUr_UsEr\Desktop\usernames.txt"
 You need to run cmd as admin if you want to save in C:\
 ```
 
-Example 11 : Make the output file formatted for PokemonGo-Map.
+Example 12 : Make the output file formatted for PokemonGo-Map.
 
 ```
 pikaptcha -of pkgo
 will output -u user1 -p pass1 -u user2 -p pass2 -u user3 -p pass3
 ```
 
-Example 12 : Creating multiple accounts with the same username + 1, 2, 3, ...
+Example 13 : Creating multiple accounts with the same username + 1, 2, 3, ...
 ```
 pikaptcha -u user -c 10
 this will create user1, user2, ..., user 10
 ```
 
-Example 13 : Creating multiple accounts with the same username + a number that increments by 1 starting at 15
+Example 14 : Creating multiple accounts with the same username + a number that increments by 1 starting at 15
 ```
 pikaptcha -u user -c 10 -sn 15
 this will create user15, user16, ..., user 24
 ```
 
-Exxample 14 : If it takes longer than 40 seconds to solve captcha, cancel the request and forfeit $0.003
+Example 15 : If it takes longer than 40 seconds to solve captcha, cancel the request and forfeit $0.003
 ```
 pikaptcha -ct 40 -r %YOUR_2CAPTCHA_KEY%
 ```
 
-Example 15 : Read user:pass from a file. It should be formatted like so
+Example 16 : Read user:pass from a file. It should be formatted like so
 ```
 mark:pass1
 jacob:pass2
@@ -223,9 +223,14 @@ james:passn
 pikaptcha -it C:\user\sri\desktop\inputaccs.txt
 ```
 
-Example 16 : Use proxy when accepting the Terms of Services.
+Example 17 : Use public proxy when accepting the Terms of Services.
 ```
-pikaptcha -px 1.1.1.1:80
+pikaptcha -px https://1.1.1.1:1
+```
+
+Example 18 : Use private proxy with authentication when accepting the Terms of Services.
+```
+pikaptcha -px https://user:password@1.1.1.1:1
 ```
 	  
 ## Common Issues
