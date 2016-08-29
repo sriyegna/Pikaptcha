@@ -160,11 +160,11 @@ def create_account(username, password, email, birthday, captchakey2, captchatime
         recaptcharesponse = "CAPCHA_NOT_READY"
         elem = driver.find_element_by_class_name("g-recaptcha")
         print"We will wait 10 seconds for captcha to be solved by 2captcha"
-        start_time = time.clock()
+        start_time = int(time.time())
         timedout = False
         while recaptcharesponse == "CAPCHA_NOT_READY":
             time.sleep(10)            
-            elapsedtime = time.clock() - start_time
+            elapsedtime = int(time.time()) - start_time
             if elapsedtime > captchatimeout:
                 print("Captcha timeout reached. Exiting.")
                 timedout = True
