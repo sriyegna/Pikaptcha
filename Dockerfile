@@ -16,7 +16,6 @@ RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x
 RUN for r in `cat requirements.txt`; do pip install $r; done
 RUN pip install .
 
-
 ENV PATH=$PATH:/usr/lib/chromium-browser/
 
 ENTRYPOINT ["pikaptcha"]
