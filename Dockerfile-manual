@@ -17,7 +17,7 @@ RUN for r in `cat requirements.txt`; do pip install $r; done
 RUN pip install .
 
 RUN mkdir ~/.vnc \
-    && x11vnc -storepasswd **ENTER_PASSWORD_HERE** ~/.vnc/passwd
+    && x11vnc -storepasswd ENTER_PASSWORD_HERE ~/.vnc/passwd
 
 ENV PATH=$PATH:/usr/lib/chromium-browser/
 
