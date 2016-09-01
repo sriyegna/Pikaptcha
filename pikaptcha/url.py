@@ -1,8 +1,12 @@
 import urllib2
+import time
 
 def openurl(address):
     try:
         urlresponse = urllib2.urlopen(address).read()
+        if urlresponse == "ERROR_NO_SLOT_AVAILABLE":
+            print "Received No Slot Available from 2captcha. Wait 3s"
+            time.sleep(3)
         return urlresponse        
     except urllib2.HTTPError, e:
         print("HTTPError = " + str(e.code))
