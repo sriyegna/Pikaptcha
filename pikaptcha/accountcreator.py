@@ -154,10 +154,10 @@ def create_account(username, password, email, birthday, captchakey2, captchatime
         gkey_index = html_source.find("https://www.google.com/recaptcha/api2/anchor?k=") + 47
         gkey = html_source[gkey_index:gkey_index+40]
         recaptcharesponse = "Failed"
-        while(recaptcharesponse == "Failed"):
+        while(recaptcharesponse == "Failed" or recaptcharesponse == "ERROR_NO_SLOT_AVAILABLE"):
             recaptcharesponse = openurl("http://2captcha.com/in.php?key=" + captchakey2 + "&method=userrecaptcha&googlekey=" + gkey)
             print "Response 1"
-            print recaptcharesponse
+            print recaptcharesponse            
         captchaid = recaptcharesponse[3:]
         elem = driver.find_element_by_class_name("g-recaptcha")
         print"We will wait 5 seconds for captcha to be solved by 2captcha"
