@@ -162,13 +162,6 @@ def entry():
                     print('  Password:  {}'.format(account_info["password"]))
                     print('  Email   :  {}'.format(account_info["email"]))
                     
-                    # Accept Terms Service
-                    accept_tos(account_info["username"], account_info["password"], args.location, args.proxy)
-        
-                    # Verify email
-                    if (args.autoverify == True):
-                        email_verify(args.plusmail, args.googlepass)
-                    
                     # Append usernames 
                     with open(args.textfile, "a") as ulist:
                         if args.outputformat == "pkgo":
@@ -177,6 +170,13 @@ def entry():
                             ulist.write(account_info["username"]+":"+account_info["password"]+"\n")
                         
                         ulist.close()
+                    # Accept Terms Service
+                    accept_tos(account_info["username"], account_info["password"], args.location, args.proxy)
+        
+                    # Verify email
+                    if (args.autoverify == True):
+                        email_verify(args.plusmail, args.googlepass)
+                    
                 # Handle account creation failure exceptions
                 except PTCInvalidPasswordException as err:
                     print('Invalid password: {}'.format(err))
