@@ -173,6 +173,8 @@ def entry():
                     with open(args.textfile, "a") as ulist:
                         if args.outputformat == "pkgo":
                             ulist.write(" -u " + account_info["username"]+" -p "+account_info["password"]+"")
+                        elif args.outputformat == "pkgocsv":
+                            ulist.write("ptc,"+account_info["username"]+","+account_info["password"]+"\n")
                         else:
                             ulist.write(account_info["username"]+":"+account_info["password"]+"\n")
                         
