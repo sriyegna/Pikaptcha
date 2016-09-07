@@ -155,9 +155,7 @@ def create_account(username, password, email, birthday, captchakey2, captchatime
         gkey = html_source[gkey_index:gkey_index+40]
         recaptcharesponse = "Failed"
         while(recaptcharesponse == "Failed" or recaptcharesponse == "ERROR_NO_SLOT_AVAILABLE"):
-            recaptcharesponse = openurl("http://2captcha.com/in.php?key=" + captchakey2 + "&method=userrecaptcha&googlekey=" + gkey)
-            print "Response 1"
-            print recaptcharesponse            
+            recaptcharesponse = openurl("http://2captcha.com/in.php?key=" + captchakey2 + "&method=userrecaptcha&googlekey=" + gkey)          
         captchaid = recaptcharesponse[3:]
         elem = driver.find_element_by_class_name("g-recaptcha")
         print"We will wait 5 seconds for captcha to be solved by 2captcha"
@@ -176,8 +174,6 @@ def create_account(username, password, email, birthday, captchakey2, captchatime
             recaptcharesponse = "Failed"
             while(recaptcharesponse == "Failed"):
                 recaptcharesponse = openurl("http://2captcha.com/res.php?key=" + captchakey2 + "&action=get&id=" + captchaid)
-                print "Response 2"
-                print recaptcharesponse
         if timedout == False:       
             solvedcaptcha = recaptcharesponse[3:]
             captchalen = len(solvedcaptcha)
