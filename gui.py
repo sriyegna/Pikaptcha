@@ -178,12 +178,6 @@ def runbutton():
                 instances = int(instances)
             except:
                 print("Invalid instances value given")
-                
-        email = "dopoke4584@gmail.com"
-        googpass = "sonicspeed"
-        count = 3
-        captchakey = "34ee7a4cd3121b207f84028304ef2ed9"
-        instances = "2"
         
         print("Creating " + str(count) + " accounts.")
         pikaptcha(username, password, email, googpass, count, captchakey, captchatimeout, outputfile, lines, startnum, proxy, location, av, tos, int(instances))
