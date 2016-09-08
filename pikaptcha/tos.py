@@ -25,8 +25,6 @@ def accept_tos_helper(username, password, location, proxy):
     if proxy != None:
         api.set_proxy({"https":proxy})
 
-    location = location.replace(" ", "")
-    location = location.split(",")
     api.set_position(float(location[0]), float(location[1]), 0.0)
     api.set_authentication(provider = 'ptc', username = username, password = password)
     response = api.app_simulation_login()

@@ -3,7 +3,7 @@ from io import open
 from setuptools import setup
 
 DIST_NAME = 'Pikaptcha'
-VERSION = 'v0.1'
+VERSION = 'v0.2'
 AUTHOR = 'sriyegna'
 EMAIL = 'sriyegna@gmail.com'
 GITHUB_USER = 'sriyegna'
@@ -28,7 +28,7 @@ setup(
     install_requires=[
         'requests[security]==2.10.0',
         'six==1.10.0',
-        'selenium==2.53.6'
+        'selenium==2.53.6',
     ],
     classifiers=[
         'Programming Language :: Python',
@@ -38,7 +38,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'pikaptcha = pikaptcha.console:entry',
+            'pikaptcha = pikaptcha.gui',
         ],
     }
 )

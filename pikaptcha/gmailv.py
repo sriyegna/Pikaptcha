@@ -2,7 +2,7 @@ import time
 import imaplib
 import string
 import urllib2
-from pikaptcha.url import *
+from url import *
 
 
 def proc_mail(M):
@@ -30,7 +30,7 @@ def proc_mail(M):
                         validate_response = "Failed"
                         while(validate_response == "Failed"):
                             validate_response = activateurl(validlink)
-                        print "Verified email and trashing Email with key: " + validlink[60:] + "\n"
+                        print "Verified email and trashing Email with key: " + validlink[60:]
                         M.store(num,'+X-GM-LABELS', '\\Trash')
                     except urllib2.URLError:
                         print "Unable to verify email.\n"

@@ -1,1 +1,1 @@
-from pikaptcha.accountcreator import *
+from gui import *
