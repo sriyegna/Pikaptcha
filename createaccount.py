@@ -85,7 +85,9 @@ class Account:
             if self.proxyaddress != None:
                 driver = webdriver.PhantomJS(desired_capabilities=dcap, service_args=service_args)
             else:
+                print("Starting PJS driver")
                 driver = webdriver.PhantomJS(desired_capabilities=dcap)
+                print("Started driver")
         else:
             if self.proxyaddress != None:
                 driver = webdriver.Chrome(chrome_options=chrome_options)
