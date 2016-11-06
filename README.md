@@ -22,7 +22,7 @@ Install the following clickable links: (if you cannot click them, all links are 
 
 6. Type `path` and hit enter. You should see C:\Python27, C:\Python27\Scripts, and C:\Program Files\Git\cmd
 
-7. If you intend to manually solve captcha, [Download Chromedriver](http://chromedriver.storage.googleapis.com/2.23/chromedriver_win32.zip). Unzip the file and place it in C:\Python27\Scripts
+7. If you intend to manually solve captcha, [Download Chromedriver](https://sites.google.com/a/chromium.org/chromedriver/downloads). Unzip the file and place it in C:\Python27\Scripts
 
 8. Shift+Right Click your desktop and "Open command window here".
 
