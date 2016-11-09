@@ -10,7 +10,7 @@ Pikaptcha creates the PTC account and completes the TOS in game. It does NOT ver
 **For Windows**
 Install the following clickable links: (if you cannot click them, all links are at the bottom.)
 
-1. If you intend to manually solve captcha, you need [Google Chrome](https://www.google.com/chrome/) installed to default directory in C:\Program Files\
+1. If you intend to manually solve captcha, you need [Google Chrome](https://www.google.com/chrome/) installed to default directory in C:\Program Files (x86)\
 
 2. [Python 2.7.12](https://www.python.org/downloads/release/python-2712/). Do this during setup. http://imgur.com/k421LiP
 
