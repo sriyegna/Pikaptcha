@@ -183,17 +183,15 @@ def entry():
                 # Handle account creation failure exceptions
                 except PTCInvalidPasswordException as err:
                     print('Invalid password: {}'.format(err))
-                sleep(220)
                 except (PTCInvalidEmailException, PTCInvalidNameException) as err:
                     print('Failed to create account! {}'.format(err))
-                sleep(220)
                 except PTCException as err:
                     print('Failed to create account! General error:  {}'.format(err))
                 sleep(220)
             except Exception:
                 import traceback
                 print("Generic Exception: " + traceback.format_exc())
-                print ("sleeping for 220 seconds")
+            print ("sleeping for 220 seconds")
             sleep(220)
         with open(args.textfile, "a") as ulist:
             ulist.write("\n")
