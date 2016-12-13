@@ -187,7 +187,6 @@ def entry():
                     print('Failed to create account! {}'.format(err))
                 except PTCException as err:
                     print('Failed to create account! General error:  {}'.format(err))
-                sleep(220)
             except Exception:
                 import traceback
                 print("Generic Exception: " + traceback.format_exc())
