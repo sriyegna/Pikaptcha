@@ -6,6 +6,7 @@ from pikaptcha.ptcexceptions import *
 from pikaptcha.tos import *
 from pikaptcha.gmailv import *
 from pikaptcha.url import *
+from time import sleep
 
 from pgoapi.exceptions import AuthException, ServerSideRequestThrottlingException, NotLoggedInException
 import pprint
@@ -189,6 +190,7 @@ def entry():
             except Exception:
                 import traceback
                 print("Generic Exception: " + traceback.format_exc())
+                time.sleep(60)
         with open(args.textfile, "a") as ulist:
             ulist.write("\n")
             ulist.close()
