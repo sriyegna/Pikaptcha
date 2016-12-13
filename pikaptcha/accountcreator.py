@@ -192,7 +192,7 @@ def create_account(username, password, email, birthday, captchakey2, captchatime
         driver.close()
         raise
     print ("sleeping for 220 seconds")
-    sleep(220)
+    time.sleep(220)
 
     print("Account successfully created.")
     driver.close()
