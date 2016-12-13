@@ -190,7 +190,7 @@ def entry():
             except Exception:
                 import traceback
                 print("Generic Exception: " + traceback.format_exc())
-            sleep(360)
+            sleep(240)
         with open(args.textfile, "a") as ulist:
             ulist.write("\n")
             ulist.close()
