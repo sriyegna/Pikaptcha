@@ -26,6 +26,9 @@ def proc_mail(M):
                 validkey_index = bodymsg.find("https://club.pokemon.com/us/pokemon-trainer-club/activated/")
                 if validkey_index != -1:
                     validlink = bodymsg[validkey_index:validkey_index+94]
+                    validlink = validlink.replace("\r", "") \
+                                         .replace("\n", "") \
+                                         .replace("=", "")
                     try:
                         validate_response = "Failed"
                         while(validate_response == "Failed"):
