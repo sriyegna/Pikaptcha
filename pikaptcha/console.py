@@ -181,14 +181,14 @@ def entry():
                         ulist.close()
                 # Handle account creation failure exceptions
                 except PTCInvalidPasswordException as err:
-                    print('Invalid password: {}'.format(err))
+                    sys.exit('Invalid password: {}'.format(err))
                 except (PTCInvalidEmailException, PTCInvalidNameException) as err:
-                    print('Failed to create account! {}'.format(err))
+                    sys.exit('Failed to create account! {}'.format(err))
                 except PTCException as err:
-                    print('Failed to create account! General error:  {}'.format(err))
+                    sys.exit('Failed to create account! General error:  {}'.format(err))
             except Exception:
                 import traceback
-                print("Generic Exception: " + traceback.format_exc())
+                sys.exit("Generic Exception: " + traceback.format_exc())
         with open(args.textfile, "a") as ulist:
             ulist.write("\n")
             ulist.close()
