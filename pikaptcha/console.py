@@ -60,8 +60,12 @@ def parse_arguments(args):
         help='Your 2captcha key from settings'
     )
     parser.add_argument(
+        '-gm', '--googlemail', type=str, default=None,
+        help='This is the mail for the google account when auto verify is activate (Only required if plus mail is different from google mail)'
+    )
+    parser.add_argument(
         '-gp','--googlepass', type=str, default=None,
-        help='This is the password for the google account you are using with plusmail'
+        help='This is the password for the google account and is require to activate auto verify when using the plus mail'
     )    
     parser.add_argument(
         '-t','--textfile', type=str, default="usernames.txt",
@@ -95,10 +99,8 @@ def parse_arguments(args):
     return parser.parse_args(args)
 
 def _verify_autoverify_email(settings):
-    if (settings['args'].autoverify == True and settings['args'].plusmail == None):
-        raise PTCInvalidEmailException("You have to specify a plusmail (--plusmail or -m) to use autoverification.")
-    if (settings['args'].autoverify == True and settings['args'].googlepass == None):
-        raise PTCInvalidEmailException("You have to specify a googlepass (--googlepass or -gp) to use autoverification.")
+    if (settings['args'].googlepass is not None and settings['args'].plusmail == None and settings['args'].googlemail == None):
+        raise PTCInvalidEmailException("You have to specify a plusmail (--plusmail or -m) or a google email (--googlemail or -gm) to use autoverification.")
 
 def _verify_plusmail_format(settings):
     if (settings['args'].plusmail != None and not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", settings['args'].plusmail)):
@@ -140,7 +142,7 @@ def entry():
         args.count = len(lines)
         
     if _verify_settings({'args':args, 'balance':captchabal}):
-        if (args.autoverify == True):
+        if (args.googlepass is not None):
             with open(args.textfile, "a") as ulist:
                 ulist.write("The following accounts use the email address: " + args.plusmail + "\n")
                 ulist.close()
@@ -167,9 +169,12 @@ def entry():
                     accept_tos(account_info["username"], account_info["password"], args.location, args.proxy)
         
                     # Verify email
-                    if (args.autoverify == True):
-                        email_verify(args.plusmail, args.googlepass)
-                    
+                    if (args.googlepass is not None):
+                        if (args.googlemail is not None):
+                            email_verify(args.googlemail, args.googlepass)
+                        else:
+                            email_verify(args.plusmail, args.googlepass)
+
                     # Append usernames 
                     with open(args.textfile, "a") as ulist:
                         if args.outputformat == "pkgo":
