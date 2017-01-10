@@ -154,6 +154,7 @@ def entry():
             if (args.inputtext != None):
                 username = ((lines[x]).split(":"))[0]
                 args.password = ((lines[x]).split(":"))[1]
+            error_msg = None
             try:
                 try:
                     account_info = pikaptcha.random_account(username, args.password, args.email, args.birthday, args.plusmail, args.recaptcha, args.captchatimeout)
@@ -181,14 +182,18 @@ def entry():
                         ulist.close()
                 # Handle account creation failure exceptions
                 except PTCInvalidPasswordException as err:
-                    sys.exit('Invalid password: {}'.format(err))
+                    error_msg = 'Invalid password: {}'.format(err)
                 except (PTCInvalidEmailException, PTCInvalidNameException) as err:
-                    sys.exit('Failed to create account! {}'.format(err))
+                    error_msg = 'Failed to create account! {}'.format(err)
                 except PTCException as err:
-                    sys.exit('Failed to create account! General error:  {}'.format(err))
+                    error_msg = 'Failed to create account! General error:  {}'.format(err)
             except Exception:
                 import traceback
-                sys.exit("Generic Exception: " + traceback.format_exc())
+                error_msg = "Generic Exception: " + traceback.format_exc()
+            if error_msg:
+                if args.count == 1:
+                    sys.exit(error_msg)
+                print(error_msg)
         with open(args.textfile, "a") as ulist:
             ulist.write("\n")
             ulist.close()
