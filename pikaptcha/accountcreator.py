@@ -39,6 +39,9 @@ def _random_email(local_length=10, sub_domain_length=5, top_domain=".com"):
         top_domain=top_domain
     )
 
+def _random_password():
+    return generate_password(5, 5, 3, 2)
+
 
 def _random_birthday():
     start = datetime.datetime(1980, 1, 1)
@@ -75,9 +78,9 @@ def _validate_birthday(birthday):
 
 
 def _validate_password(password):
-    # Check that password length is between 6 and 15 characters long
-    if len(password) < 6 or len(password) > 15:
-        raise PTCInvalidPasswordException('Password must be between 6 and 15 characters.')
+    # Check that password length is between 8 and 50 characters long
+    if len(password) < 8 or len(password) > 50:
+        raise PTCInvalidPasswordException('Password must be between 8 and 50 characters.')
     return True
 
 
@@ -214,7 +217,7 @@ def _validate_response(driver):
 
 def random_account(username=None, password=None, email=None, birthday=None, plusmail=None, recaptcha=None, captchatimeout=1000):
     try_username = _random_string() if username is None else str(username)
-    password = _random_string() if password is None else str(password)
+    password = _random_password() if password is None else str(password)
     try_email = _random_email() if email is None else str(email)
     captchakey2 = None if recaptcha is None else str(recaptcha)
     if plusmail is not None:
