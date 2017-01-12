@@ -155,7 +155,7 @@ def create_account(username, password, email, birthday, captchakey2, captchatime
         gkey = html_source[gkey_index:gkey_index+40]
         recaptcharesponse = "Failed"
         while(recaptcharesponse == "Failed"):
-            recaptcharesponse = openurl("http://2captcha.com/in.php?key=" + captchakey2 + "&method=userrecaptcha&googlekey=" + gkey)
+            recaptcharesponse = openurl("http://2captcha.com/in.php?key=" + captchakey2 + "&method=userrecaptcha&googlekey=" + gkey + "&pageurl=" + driver.current_url)
         captchaid = recaptcharesponse[3:]
         recaptcharesponse = "CAPCHA_NOT_READY"
         elem = driver.find_element_by_class_name("g-recaptcha")
