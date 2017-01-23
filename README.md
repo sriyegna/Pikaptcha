@@ -1,5 +1,5 @@
 # Pikaptcha
-**I am currently in the process of moving so development is going to be very slow for the next few days. A GUI is almost in place that will account for most of the user input errors. **
+**This is a fully functional Fork as of 1/22/2017. It doesn't accept the TOS as the method is out of date. This can be done via PokemonGoMap, PokeAlert and im sure other methods.**
 
 Based off pikapy by skvvv, which is based off ptc2 Kitryn, which is based off ptcaccount by jepayne1138, etc.
 Also uses pogoapi from keyphact
@@ -32,7 +32,7 @@ Install the following clickable links: (if you cannot click them, all links are 
 
 8. Shift+Right Click your desktop and "Open command window here".
 
-9. Type `pip install git+https://github.com/sriyegna/pikaptcha` and hit enter
+9. Type `pip install git+https://github.com/boby360//pikaptcha` and hit enter
 
 10. Type `pip install git+https://github.com/keyphact/pgoapi.git` and hit enter
 
