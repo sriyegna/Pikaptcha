@@ -36,7 +36,7 @@ Install the following clickable links: (if you cannot click them, all links are 
 
 8. Shift+Right Click your desktop and "Open command window here".
 
-9. Type `pip install git+https://github.com/boby360//pikaptcha` and hit enter
+9. Type `pip install git+https://github.com/sriyegna/pikaptcha` and hit enter
 
 11. Refer to "How To Use" instructions below
 
