@@ -1,5 +1,7 @@
 # Pikaptcha
-**This is a fully functional Fork as of 1/22/2017. It doesn't accept the TOS as the method is out of date. This can be done via PokemonGoMap, PokeAlert and im sure other methods.**
+**This project has been discontinued and is out of date. If anyone would like to take over, please let me know via Discord.**
+
+**This is a fully functional as of 1/22/2017. It doesn't accept the TOS as the method is out of date. This can be done via PokemonGoMap, PokeAlert and im sure other methods. - Boby360**
 
 Based off pikapy by skvvv, which is based off ptc2 Kitryn, which is based off ptcaccount by jepayne1138, etc.
 Also uses pogoapi from keyphact
@@ -16,7 +18,7 @@ Pikaptcha creates the PTC account and completes the TOS in game. It does verify 
 **For Windows**
 Install the following clickable links: (if you cannot click them, all links are at the bottom.)
 
-1. If you intend to manually solve captcha, you need [Google Chrome](https://www.google.com/chrome/) installed to default directory in C:\Program Files\
+1. If you intend to manually solve captcha, you need [Google Chrome](https://www.google.com/chrome/) installed to default directory in C:\Program Files (x86)\
 
 2. [Python 2.7.12](https://www.python.org/downloads/release/python-2712/). Do this during setup. http://imgur.com/k421LiP
 
@@ -29,6 +31,8 @@ Install the following clickable links: (if you cannot click them, all links are 
 6. Type `path` and hit enter. You should see C:\Python27, C:\Python27\Scripts, and C:\Program Files\Git\cmd
 
 7. If you intend to manually solve captcha, [Download Chromedriver](http://chromedriver.storage.googleapis.com/2.27/chromedriver_win32.zip) (UPDATED!!). Unzip the file and place it in C:\Python27\Scripts
+
+7. If you intend to manually solve captcha, [Download Chromedriver](https://sites.google.com/a/chromium.org/chromedriver/downloads). Unzip the file and place it in C:\Python27\Scripts
 
 8. Shift+Right Click your desktop and "Open command window here".
 

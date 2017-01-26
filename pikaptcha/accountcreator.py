@@ -13,6 +13,8 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from pikaptcha.jibber import *
 from pikaptcha.ptcexceptions import *
 from pikaptcha.url import *
+from seleniumrequests import Chrome
+from seleniumrequests import PhantomJS
 
 user_agent = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) " + "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36")
 
@@ -84,6 +86,21 @@ def _validate_password(password):
     return True
 
 
+def _validate_username(driver, username):
+    try:
+        response = driver.request('POST','https://club.pokemon.com/api/signup/verify-username', data={"name": username})
+        response_data = response.json()
+
+        if response_data['valid'] and not response_data['inuse']:
+            print("User '" + username + "' is available, proceeding...")
+        else:
+            print("User '" + username + "' is already in use.")
+            driver.close()
+            raise PTCInvalidNameException("User '" + username + "' is already in use.")
+    except:
+        print("Failed to check if the username is available!")
+
+
 def create_account(username, password, email, birthday, captchakey2, captchatimeout):
     if password is not None:
         _validate_password(password)
@@ -92,9 +109,11 @@ def create_account(username, password, email, birthday, captchakey2, captchatime
     if captchakey2 != None:
         dcap = dict(DesiredCapabilities.PHANTOMJS)
         dcap["phantomjs.page.settings.userAgent"] = user_agent
-        driver = webdriver.PhantomJS(desired_capabilities=dcap)
+        #driver = webdriver.PhantomJS(desired_capabilities=dcap)
+        driver = PhantomJS(desired_capabilities=dcap)
     else:
-        driver = webdriver.Chrome()
+        #driver = webdriver.Chrome()
+        driver = Chrome()
         driver.set_window_size(600, 600)
 
     # Input age: 1992-01-08
@@ -118,6 +137,8 @@ def create_account(username, password, email, birthday, captchakey2, captchatime
     user = driver.find_element_by_name("username")
     user.clear()
     user.send_keys(username)
+
+    _validate_username(driver, username)
 
     elem = driver.find_element_by_name("password")
     elem.clear()
@@ -166,7 +187,7 @@ def create_account(username, password, email, birthday, captchakey2, captchatime
         start_time = int(time.time())
         timedout = False
         while recaptcharesponse == "CAPCHA_NOT_READY":
-            time.sleep(10)            
+            time.sleep(10)
             elapsedtime = int(time.time()) - start_time
             if elapsedtime > captchatimeout:
                 print("Captcha timeout reached. Exiting.")
@@ -176,12 +197,12 @@ def create_account(username, password, email, birthday, captchakey2, captchatime
             recaptcharesponse = "Failed"
             while(recaptcharesponse == "Failed"):
                 recaptcharesponse = openurl("http://2captcha.com/res.php?key=" + captchakey2 + "&action=get&id=" + captchaid)
-        if timedout == False:       
+        if timedout == False:
             solvedcaptcha = recaptcharesponse[3:]
             captchalen = len(solvedcaptcha)
             elem = driver.find_element_by_name("g-recaptcha-response")
             elem = driver.execute_script("arguments[0].style.display = 'block'; return arguments[0];", elem)
-            elem.send_keys(solvedcaptcha)      
+            elem.send_keys(solvedcaptcha)
             print "Solved captcha"
     try:
         user.submit()
