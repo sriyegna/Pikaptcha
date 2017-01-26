@@ -3,7 +3,7 @@ import sys
 
 import pikaptcha
 from pikaptcha.ptcexceptions import *
-from pikaptcha.tos import *
+#from pikaptcha.tos import *
 from pikaptcha.gmailv import *
 from pikaptcha.url import *
 
@@ -166,7 +166,7 @@ def entry():
                     print('  Email   :  {}'.format(account_info["email"]))
                     
                     # Accept Terms Service
-                    accept_tos(account_info["username"], account_info["password"], args.location, args.proxy)
+                    #accept_tos(account_info["username"], account_info["password"], args.location, args.proxy)
         
                     # Verify email
                     if (args.googlepass is not None):

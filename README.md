@@ -1,5 +1,7 @@
 # Pikaptcha
-This project has been discontinued and is out of date. If anyone would like to take over, please let me know via Discord.
+**This project has been discontinued and is out of date. If anyone would like to take over, please let me know via Discord.**
+
+**This is a fully functional as of 1/22/2017. It doesn't accept the TOS as the method is out of date. This can be done via PokemonGoMap, PokeAlert and im sure other methods. - Boby360**
 
 Based off pikapy by skvvv, which is based off ptc2 Kitryn, which is based off ptcaccount by jepayne1138, etc.
 Also uses pogoapi from keyphact
@@ -28,13 +30,13 @@ Install the following clickable links: (if you cannot click them, all links are 
 
 6. Type `path` and hit enter. You should see C:\Python27, C:\Python27\Scripts, and C:\Program Files\Git\cmd
 
+7. If you intend to manually solve captcha, [Download Chromedriver](http://chromedriver.storage.googleapis.com/2.27/chromedriver_win32.zip) (UPDATED!!). Unzip the file and place it in C:\Python27\Scripts
+
 7. If you intend to manually solve captcha, [Download Chromedriver](https://sites.google.com/a/chromium.org/chromedriver/downloads). Unzip the file and place it in C:\Python27\Scripts
 
 8. Shift+Right Click your desktop and "Open command window here".
 
 9. Type `pip install git+https://github.com/sriyegna/pikaptcha` and hit enter
-
-10. Type `pip install git+https://github.com/keyphact/pgoapi.git` and hit enter
 
 11. Refer to "How To Use" instructions below
 
@@ -44,8 +46,6 @@ Install the following clickable links: (if you cannot click them, all links are 
 1. Open terminal and install chromedriver by typing `brew install chromedriver`
 
 2. In terminal type `pip install git+https://github.com/sriyegna/pikaptcha` without quotations and hit enter
-
-3. In terminal type `pip install git+https://github.com/keyphact/pgoapi.git` without quotations and hit enter
 
 4. Refer to "How To Use" instructions below
 
