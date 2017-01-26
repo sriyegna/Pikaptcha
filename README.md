@@ -8,7 +8,7 @@ Also uses pogoapi from keyphact
 
 Was updated with several features/fixes on Aug 23 2016. To update open CMD or terminal
 ^^Update also broke (email verification) which is now fixed as of Aug 23 2016 5:30AM EST. Update again please.
-`pip install --upgrade git+https://github.com/boby360/pikaptcha`
+`pip install --upgrade git+https://github.com/sriyegna/pikaptcha`
 
 ## Description
 Pikaptcha creates PTC accounts by creating a chrome session and automatically entering data in the required fields. If you choose to use the 2captcha service, the entire script can be run automatically, else you will need to manually solve captchas.
@@ -38,8 +38,6 @@ Install the following clickable links: (if you cannot click them, all links are 
 
 9. Type `pip install git+https://github.com/boby360//pikaptcha` and hit enter
 
-10. Type `pip install git+https://github.com/keyphact/pgoapi.git` and hit enter
-
 11. Refer to "How To Use" instructions below
 
 
@@ -47,9 +45,7 @@ Install the following clickable links: (if you cannot click them, all links are 
 
 1. Open terminal and install chromedriver by typing `brew install chromedriver`
 
-2. In terminal type `pip install git+https://github.com/boby360/pikaptcha` without quotations and hit enter
-
-3. In terminal type `pip install git+https://github.com/keyphact/pgoapi.git` without quotations and hit enter
+2. In terminal type `pip install git+https://github.com/sriyegna/pikaptcha` without quotations and hit enter
 
 4. Refer to "How To Use" instructions below
 
@@ -58,7 +54,7 @@ Install the following clickable links: (if you cannot click them, all links are 
 
 1. Open terminal and install chromedriver by typing `sudo apt-get install chromium-browser`
 
-2. In terminal type `pip install git+https://github.com/boby360/pikaptcha` without quotations and hit enter
+2. In terminal type `pip install git+https://github.com/sriyegna/pikaptcha` without quotations and hit enter
 
 3. In terminal type `pip install git+https://github.com/keyphact/pgoapi.git` without quotations and hit enter
 
