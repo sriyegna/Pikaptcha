@@ -7,7 +7,7 @@ from pikaptcha.ptcexceptions import *
 from pikaptcha.gmailv import *
 from pikaptcha.url import *
 
-from pgoapi.exceptions import AuthException, ServerSideRequestThrottlingException, NotLoggedInException
+#from pgoapi.exceptions import AuthException, ServerSideRequestThrottlingException, NotLoggedInException
 import pprint
 import threading
 import getopt
