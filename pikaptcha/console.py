@@ -148,6 +148,9 @@ def entry():
                 ulist.close()
         for x in range(0,args.count):
             print("Making account #" + str(x+1))
+            if (((x+1)%6 = 0)):
+                print("Sleeping of the cooldown period for every 6th account for 5 mins...")
+                time.sleep(5*60)
             if ((args.username != None) and (args.count != 1) and (args.inputtext == None)):
                 if(args.startnum == None):
                     username = args.username + str(x+1)
