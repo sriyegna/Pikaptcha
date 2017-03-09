@@ -15,6 +15,7 @@ import urllib2
 import imaplib
 import string
 import re
+import random
 
 
 def parse_arguments(args):
@@ -146,11 +147,13 @@ def entry():
             with open(args.textfile, "a") as ulist:
                 ulist.write("The following accounts use the email address: " + args.plusmail + "\n")
                 ulist.close()
-        for x in range(0,args.count):
+        for x in range(0, args.count):
+            if x != 0:
+                sleep_time = int(random.uniform(11, 13) * 60)
+                print "Sleeping %d secs to avoid cooldown period..." % (sleep_time,)
+                time.sleep(sleep_time)
             print("Making account #" + str(x+1))
-            if x % 6 == 5:
-                print("Sleeping the 60 min cooldown period for every 5 accounts...")
-                time.sleep(60*60)
+
             if ((args.username != None) and (args.count != 1) and (args.inputtext == None)):
                 if(args.startnum == None):
                     username = args.username + str(x+1)
